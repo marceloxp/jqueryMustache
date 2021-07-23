@@ -1,0 +1,23 @@
+{
+  "name": "jqueryumsmustache",
+  "version": "1.0.1",
+  "description": "Wrapper jQuery para processar rotinas em Mustache JS.",
+  "main": "dist/jqueryUmsMustache.min.js",
+  "repository": "git@bitbucket.org:umstudio/jqueryumsmustache.git",
+  "author": "MarceloXP <marceloxp@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-beautify": "^3.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-edit": "^0.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-replace": "^1.0.0",
+    "gulp-uglify": "^3.0.2",
+    "packagejsondata": "^1.1.1",
+    "strnow": "^1.0.1"
+  },
+  "dependencies": {
+    "mustache": "^2.3.0"
+  }
+}

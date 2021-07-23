@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Lab - Mustache Wrapper</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script type="text/javascript" src="js/cjsbaseclass.min.js"></script>
+	<script type="text/javascript" src="js/jqueryUmsMustache.js"></script>
+</head>
+<body>
+
+<table class="table" width="100%">
+	<tr>
+		<td>
+			<label>With data-attr</label>
+			<pre>$('#tmpl_dom_data').mustache();</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>&lt;div id=&quot;rnd_dom_data&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;tmpl_dom_data&quot; type=&quot;x-tmpl-mustache&quot; data-target=&quot;rnd_dom_data&quot; data-source=&quot;data/ages.json&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{age}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<div id="rnd_dom_data"></div>
+			<script id="tmpl_dom_data" type="x-tmpl-mustache" data-target="rnd_dom_data" data-source="data/ages.json">
+				<table class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{age}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>Simple</label>
+			<pre>$('#tmpl_original').mustache
+(
+	{
+		'url'   : 'data/ages.json',
+		'method': 'POST',
+		'target': 'rnd_original'
+	}
+);</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>
+&lt;div id=&quot;rnd_original&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;tmpl_original&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{age}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<div id="rnd_original"></div>
+			<script id="tmpl_original" type="x-tmpl-mustache">
+				<table id="table_original" class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{age}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>Extra</label>
+			<pre>$('#tmpl_extra').mustache
+(
+	{
+		'url'   : 'data/ages.json',
+		'method': 'POST',
+		'target': 'rnd_extra',
+		'extra' : {
+			'slug': 'Extra data text'
+		}
+	}
+);</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>
+&lt;div id=&quot;rnd_extra&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;tmpl_extra&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{age}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Extra data&lt;/th&gt;&lt;/tr&gt;
+		{{#extra}}
+			&lt;tr&gt;&lt;td&gt;{{slug}}&lt;/td&gt;&lt;/tr&gt;
+		{{/extra}}
+	&lt;/table&gt;
+&lt;/script&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<div id="rnd_extra"></div>
+			<script id="tmpl_extra" type="x-tmpl-mustache">
+				<table id="table_extra" class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{age}}</td></tr>
+					{{/data}}
+				</table>
+				<table id="table_extra" class="table table-striped table-bordered table-condensed">
+					<tr><th>Extra data</th></tr>
+					{{#extra}}
+						<tr><td>{{slug}}</td></tr>
+					{{/extra}}
+				</table>
+			</script>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>Custom Tags</label>
+			<pre>$('#tmpl_custom_tags').mustache
+(
+	{
+		'url'   : 'data/ages.json',
+		'method': 'POST',
+		'tags'  : ['[[', ']]'],
+		'target': 'rnd_custom_tags'
+	}
+);</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>
+&lt;div id=&quot;rnd_custom_tags&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;tmpl_custom_tags&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		[[#data]]
+			&lt;tr&gt;&lt;td&gt;[[name]]&lt;/td&gt;&lt;td&gt;[[age]]&lt;/td&gt;&lt;/tr&gt;
+		[[/data]]
+	&lt;/table&gt;
+&lt;/script&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<div id="rnd_custom_tags"></div>
+			<script id="tmpl_custom_tags" type="x-tmpl-mustache">
+				<table id="table_original" class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					[[#data]]
+						<tr><td>[[name]]</td><td>[[age]]</td></tr>
+					[[/data]]
+				</table>
+			</script>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>Json Source</label>
+			<pre>var json_source = {
+	"data":
+	[
+		{
+			"name": "Marcelo XP",
+			"age": 42
+		},
+		{
+			"name": "DJ Gomes",
+			"age": 34
+		}
+	]
+};
+
+$('#tmpl_json_source').mustache
+(
+	{
+		'source': json_source,
+		'target': 'rnd_json_source'
+	}
+);</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>
+&lt;div id=&quot;rnd_json_source&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;tmpl_json_source&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{age}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<div id="rnd_json_source"></div>
+			<script id="tmpl_json_source" type="x-tmpl-mustache">
+				<table id="table_json_source" class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{age}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>With Callback</label>
+			<pre>var html = 
+[
+	'&lt;h4&gt;&lt;span class=&quot;label label-success&quot;&gt;',
+	'Callback: Done print table',
+	'&lt;/span&gt;&lt;/h4&gt;'
+];
+var callback = function()
+{
+	var $node = $('#table_with_callback').parent();
+	$node.append(html.join(''));
+};
+
+$('#tmpl_with_callback').mustache
+(
+	{
+		'url'   : 'data/ages.json',
+		'target': 'rnd_with_callback'
+	},
+	function()
+	{
+		setTimeout(callback, 1000);
+	}
+);</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>&lt;div id=&quot;rnd_with_callback&quot;&gt;&lt;/div&gt;
+&lt;script id=&quot;tmpl_with_callback&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table id=&quot;table_with_callback&quot; class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{age}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<div id="rnd_with_callback"></div>
+			<script id="tmpl_with_callback" type="x-tmpl-mustache">
+				<table id="table_with_callback" class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{age}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td>
+			<label>Pre rendered</label>
+			<pre>$('#tmpl_jquery').mustache
+(
+	{
+		'url'              : 'data/ages.json',
+		'beforeRenderJson' : function(p_json)
+		{
+			p_json.data[0].name = 'Xespeta';
+			return p_json;
+		},
+		'beforeRenderItem' : function(p_object)
+		{
+			if (p_object.age === 34)
+			{
+				p_object.age = p_object.age * 100;
+			}
+			return p_object;
+		}
+	}
+);</pre>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>&lt;script id=&quot;tmpl_jquery&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Idade&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{age}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<script id="tmpl_jquery" type="x-tmpl-mustache">
+				<table class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Idade</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{age}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>Append</label>
+			<pre>$('#tmpl_phones').mustache
+(
+	{
+		'url'   : 'data/ages.json',
+		'target': 'rnd_phones',
+		'append': true
+	}
+);
+
+$(document).on
+(
+	'click',
+	'#btn-render',
+	function(e)
+	{
+		e.preventDefault();
+		self.page = (empty(self.page)) ? 2 : (self.page + 1);
+		$('#tmpl_phones').mustache
+		(
+			{
+				'url'   : 'data/ages.json',
+				'data'  : { 'page' : self.page },
+				'cache' : true,
+				'target': 'rnd_phones',
+				'append': true
+			}
+		);
+	}
+);</pre>
+			<button id="btn-render" style="margin-bottom: 5px;">Render (More)</button>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>&lt;script id=&quot;tmpl_phones&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Telefone&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{phone}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;
+&lt;div id=&quot;rnd_phones&quot;&gt;&lt;/div&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<script id="tmpl_phones" type="x-tmpl-mustache">
+				<table class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Telefone</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{phone}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+			<div id="rnd_phones"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>Cache</label>
+			<pre>$(document).on
+(
+	'click',
+	'#btn-render-cache-1',
+	function(e)
+	{
+		e.preventDefault();
+		$('#tmpl_phones_cache').mustache
+		(
+			{
+				'url'   : 'data/phones-cache-1.json',
+				'data'  : { 'page' : self.page },
+				'cache' : true,
+				'target': 'rnd_phones_cache',
+				'append': true
+			}
+		);
+	}
+);
+
+$(document).on
+(
+	'click',
+	'#btn-render-cache-2',
+	function(e)
+	{
+		e.preventDefault();
+		$('#tmpl_phones_cache').mustache
+		(
+			{
+				'url'   : 'data/phones-cache-2.json',
+				'data'  : { 'page' : self.page },
+				'cache' : true,
+				'target': 'rnd_phones_cache',
+				'append': true
+			}
+		);
+	}
+);</pre>
+			<button id="btn-render-cache-1" style="margin-bottom: 5px;">Phones 1</button>
+			<button id="btn-render-cache-2" style="margin-bottom: 5px;">Phones 2</button>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>&lt;script id=&quot;tmpl_phones_cache&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Telefone&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{phone}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;
+&lt;div id=&quot;rnd_phones_cache&quot;&gt;&lt;/div&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<script id="tmpl_phones_cache" type="x-tmpl-mustache">
+				<table class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Telefone</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{phone}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+			<div id="rnd_phones_cache"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>Replace</label>
+			<pre>$(document).on
+(
+	'click',
+	'#btn-replace-1',
+	function(e)
+	{
+		e.preventDefault();
+		$('#tmpl_phones_replace').mustache
+		(
+			{
+				'url'    : 'data/phones-cache-1.json',
+				'data'   : { 'page' : self.page },
+				'replace': true,
+				'target' : 'rnd_phones_replace'
+			}
+		);
+	}
+);
+
+$(document).on
+(
+	'click',
+	'#btn-replace-2',
+	function(e)
+	{
+		e.preventDefault();
+		$('#tmpl_phones_replace').mustache
+		(
+			{
+				'url'    : 'data/phones-cache-2.json',
+				'data'   : { 'page' : self.page },
+				'replace': true,
+				'target' : 'rnd_phones_replace'
+			}
+		);
+	}
+);</pre>
+			<button id="btn-replace-1" style="margin-bottom: 5px;">Phones 1</button>
+			<button id="btn-replace-2" style="margin-bottom: 5px;">Phones 2</button>
+		</td>
+		<td>
+			<label>Template</label>
+			<pre>&lt;script id=&quot;tmpl_phones_replace&quot; type=&quot;x-tmpl-mustache&quot;&gt;
+	&lt;table class=&quot;table table-striped table-bordered table-condensed&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;Nome&lt;/th&gt;&lt;th&gt;Telefone&lt;/th&gt;&lt;/tr&gt;
+		{{#data}}
+			&lt;tr&gt;&lt;td&gt;{{name}}&lt;/td&gt;&lt;td&gt;{{phone}}&lt;/td&gt;&lt;/tr&gt;
+		{{/data}}
+	&lt;/table&gt;
+&lt;/script&gt;
+&lt;div id=&quot;rnd_phones_replace&quot;&gt;&lt;/div&gt;</pre>
+		</td>
+		<td>
+			<label>Result</label>
+			<script id="tmpl_phones_replace" type="x-tmpl-mustache">
+				<table class="table table-striped table-bordered table-condensed">
+					<tr><th>Nome</th><th>Telefone</th></tr>
+					{{#data}}
+						<tr><td>{{name}}</td><td>{{phone}}</td></tr>
+					{{/data}}
+				</table>
+			</script>
+			<div id="rnd_phones_replace"></div>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript" src="js/index.js"></script>
+
+</body>
+</html>

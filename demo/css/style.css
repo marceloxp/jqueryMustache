@@ -1,0 +1,12 @@
+body
+{
+	background-color: #efefef;
+}
+
+#rnd_age_table_old
+{
+	border: 1px solid black;
+	min-height: 85px;
+	max-width: 200px;
+	background-color: silver;
+}
